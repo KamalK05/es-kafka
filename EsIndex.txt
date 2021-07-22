@@ -1,0 +1,51 @@
+CURL:
+curl -X PUT "http://127.0.0.1:5601/es_kafka_org_index_v1?include_type_name=true&pretty" -H 'Content-Type: application/json' -d '{"settings":{"analysis":{"normalizer":{"lowercase_normalizer":{"type":"custom","char_filter":[],"filter":["lowercase","asciifolding"]}}}},"mappings":{"_doc":{"properties":{"organization_id":{"type":"long"},"organization_name":{"type":"text", "fields":{"keyword":{"type":"keyword","normalizer":"lowercase_normalizer"}}},"organization_established_date":{"type":"text"},"organization_type":{"type":"integer"},"organization_status":{"type":"integer"},"organization_is_deleted":{"type":"boolean"}}}}}'
+
+KIBANA:
+PUT es_kafka_org_index_v1?include_type_name=true
+{
+  "settings": {
+    "analysis": {
+      "normalizer": {
+        "lowercase_normalizer": {
+          "type": "custom",
+          "char_filter": [],
+          "filter": [
+            "lowercase",
+            "asciifolding"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "organization_id": {
+          "type": "long"
+        },
+        "organization_name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "normalizer": "lowercase_normalizer"
+            }
+          }
+        },
+        "organization_established_date": {
+          "type": "text"
+        },
+        "organization_type": {
+          "type": "integer"
+        },
+        "organization_status": {
+          "type": "integer"
+        },
+        "organization_is_deleted": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
